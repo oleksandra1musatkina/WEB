@@ -32,7 +32,7 @@
 </head>
 
 <body>
-  <h1> Dynamicky renderovaný obsah tabuľky</h1>
+  <h1> Dynamicky renderovany obsah tabulky</h1>
   <div id="divForm">
     <table>
       <tr>
@@ -81,12 +81,22 @@
       let lname = $('#lname').val();
       let vek = $('#age').val();
       let gender = $('input[name=gender]:checked').val();
+      console.log(gender);
+      if (fname.length == 0 || lname.length == 0 || vek.length == 0 || gender == undefined) {
+        alert("You forgot to fill firstname,lastname or gender");
+        return;
+      }
+      if (vek <= 0) {
+        alert("You have entered minus age");
+        return;
+      }
+
       let person = {
         id: count,
         fname: fname,
         lname: lname,
         age: vek,
-        gender: gender
+        gender: gender,
       };
       persons.push(person);
       renderTable(person);
