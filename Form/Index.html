@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Formular</title>
+
+  </head>
+  <body>
+    <table border="0" width="400" align="center">
+     <h1 id="Registration">Registration</h1>
+      <tbody>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" name="firstname" placeholder="Enter your name"></td>
+        </tr>
+        <tr>
+          <td>Password: </td>
+          <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><input type="email" name="email"></td>
+        </tr>
+        <tr>
+          <td>Date of birth:</td>
+          <td><input type="date" name="dateofbirth" min="1989-01-01" placeholder="YYYY-MM-DD"></td>
+        </tr>
+        <tr>
+          <td>Grade:</td>
+          <td><input type="text"> </td>
+        </tr>
+
+        <tr>
+          <td>Gender:</td>
+          <td><input type="radio" name="gender" value="1" checked>Male
+          <br><input type="radio" name="gender" value="2">Female</td>
+        </tr>
+        <tr>
+          <td>Marital status: </td>
+          <td>
+          <input type="radio" name="education" value="Single" checked>Single
+          <br><input type="radio" name="education" value="Married">Married
+          <br><input type="radio" name="education" value="Divorced">Divorced
+          <br><input type="radio" name="education" value="Widower">Widower</td>
+        </tr>
+        <tr>
+          <td>Languages:</td>
+          <td><input type="checkbox" name="English">English <br>
+          <input type="checkbox" name="German">German <br>
+          <input type="checkbox" name="Russian">Russian <br>
+          <input type="checkbox" name="Other" value="1">Other</td>
+        </tr>
+        <tr>
+          <td>Nationality:</td>
+          <td><select name="district">
+            <option>Slovak</option>
+            <option>Hungarian</option>
+            <option>Franch</option>
+            <option>German</option>
+            <option>Italian</option>
+            <option>Russian</option>
+            <option>Ukranian</option>
+            <option>Other</option>
+          </select> </td>
+        </tr>
+        <tr>
+          <td>About:</td>
+          <td><textarea name="Informationaboutme" rows="5" placeholder="Text">Text</textarea></td>
+        </tr>
+        <tr>
+          <td>Your CV:</td>
+          <td><input type="file"  value="Vyber subor"> </td>
+        </tr>
+        <tr>
+          <td>Are you happy?</td>
+          <td>no<input type="range" name="" min="0" max="300">yes</td>
+        </tr>
+        <tr>
+          <td style="text-align:center"><input type="reset" name="reset" value="Reset"></td>
+          <td style="text-align:center"><input type="button" name="submiiit" value="Submit"> </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

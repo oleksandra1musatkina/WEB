@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>
+		Form
+	</title>
+	<link rel="stylesheet" type="text/css" href="styleform.css">
+</head>
+
+<body>
+
+	<div>
+
+		<form>
+			<table>
+
+				<caption>Registration</caption>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" name="nameUser" placeholder="Enter your name"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td id="errorMes" name="errorMes"></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input type="Password" name="Passw"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td id="errorMes" name="errorMes"></td>
+				</tr>
+				<tr>
+					<td>Email:</td>
+					<td><input type="email" name="email"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td id="errorMes" name="errorMes"></td>
+				</tr>
+				<tr>
+					<td>Date of Birth:</td>
+					<td><input type="Date" name="Birth"></td>
+				</tr>
+				<tr>
+					<td>Grade:</td>
+					<td><input type="number" name="Grade"></td>
+				</tr>
+				<tr>
+					<td>Gender:</td>
+					<td>
+						<br>Male<input type="radio" name="Gender" value="male" checked>
+						<br>Female<input type="radio" name="Gender" value="female">
+					</td>
+				</tr>
+				<tr>
+					<td>Marital status:</td>
+					<td>
+						<br>Single<input type="radio" name="Marital" value="Single" checked>
+						<br>Married<input type="radio" name="Marital" value="Married">
+						<br>Divorced<input type="radio" name="Marital" value="Divorced">
+						<br>Widower<input type="radio" name="Marital" value="Widower">
+					</td>
+				</tr>
+				<tr>
+					<td>Languages:</td>
+					<td>
+						<br>English<input type="checkbox" name="Languages" value="English">
+						<br>German<input type="checkbox" name="Languages" value="German">
+						<br>Russian<input type="checkbox" name="Languages" value="Russian">
+						<br>Other<input id="otherLanguage" type="checkbox" name="Languages" value="Other" onclick="otherClickedFunction()">
+						<input id="otherLanguages" name="other-languages" style="display:none">
+
+					</input>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Nacionality:</td>
+					<td>
+						<select>
+							<OPTION>Slovak</OPTION>
+							<OPTION>Chinese</OPTION>
+							<OPTION>Cubans</OPTION>
+							<OPTION>Czech</OPTION>
+							<OPTION>Mongol</OPTION>
+							<OPTION>Poland</OPTION>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>About:</td>
+					<td>
+						<textarea rows="8" placeholder="text"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>Your CV:</td>
+					<td>
+						<input type="file" name="CV" accept="image/png, image/jpeg">
+					</td>
+				</tr>
+				<tr>
+					<td>Are you happy:</td>
+					<td>
+						No<input type="range" name="ranking" min="no" max="yes">Yes
+					</td>
+				</tr>
+				<tr>
+					<td><input type="reset" name="submit" value="reset"></td>
+					<td>
+						<input type="button" onclick="check()" value="Submit"></td>
+				</tr>
+			</table>
+		</form>
+
+	</div>
+
+	<script type="text/javascript">
+		function check() {
+			let name = document.getElementsByName("nameUser")[0].value;
+			if (name.length < 2) {
+				document.getElementsByName("errorMes")[0].innerHTML = "Name must have minimum 2 letters";
+			} else {
+				document.getElementsByName("errorMes")[0].innerHTML = "";
+			}
+
+			let pass = document.getElementsByName("Passw")[0].value;
+
+			if (pass.length < 8) {
+				document.getElementsByName("errorMes")[1].innerHTML = "Password must have minimum 8 letters or numbers";
+			} else {
+				// /\d/
+				if ((/[A-Z]/.test(pass)) === true) {
+					if ((/[a-z]/.test(pass)) === true) {
+
+						if ((/[\d]/.test(pass)) === true) {
+							document.getElementsByName("errorMes")[1].innerHTML = "";
+						} else {
+							document.getElementsByName("errorMes")[1].innerHTML = "Password must have minimum 1 number";
+						}
+
+					} else {
+						document.getElementsByName("errorMes")[1].innerHTML = "Password must have minimum 1 lower letter";
+					}
+				} else {
+					document.getElementsByName("errorMes")[1].innerHTML = "Password must have minimum 1 upper letter";
+				}
+			}
+
+			let email = document.getElementsByName("email")[0].value;
+			if (/[@](.+)(\.[a-z]+)$/.test(email) === true) {
+				document.getElementsByName("errorMes")[2].innerHTML = "";
+			} else {
+				document.getElementsByName("errorMes")[2].innerHTML = "You have entered invalid Email";
+			}
+
+
+
+		}
+
+		function otherClickedFunction() {
+			var checkBox = document.getElementById("otherLanguage");
+
+			var oL = document.getElementById("otherLanguages");
+
+
+			if (checkBox.checked == true) {
+				oL.style.display = "block";
+			} else {
+				oL.style.display = "none";
+			}
+		}
+	</script>
+
+</body>
+
+</html>

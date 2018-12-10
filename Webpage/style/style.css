@@ -1,0 +1,103 @@
+table, th, td {
+    margin: 40px 70px 0px 0px;
+   border: 1px solid black;
+    font-family: sans-serif;
+    text-align: center; 
+    background-attachment: scroll:
+}
+svg {
+ margin: 0px 0px 0px 1100px;
+}
+p {
+    text-align:center;
+    color: white;   
+}
+div {
+    font-family:Arial;
+    font-weight: bold;
+    font-size: 100%;
+/*    text-align:right;*/
+/*    margin: 0px 140px 0px 0px;*/
+    padding: 2px 2px 2px 2px;
+    color: white;
+}
+h1 {
+    font-family:Arial;
+    text-align: center;
+    color: white;
+}
+h2 {
+    text-align: center;
+    color: white;
+}
+html {
+    background-image: url("2.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat:repeat;
+    background-size:cover;
+}
+td {
+    font-family:Arial;
+}
+/*#Registration {
+    font-family: Arial;
+    font-weight: 200;
+    width: 400px;
+    text-align: center;
+   margin: 0 auto;
+    font-size: 25px;     
+    background-color: lightgray;
+    color: black;
+} */
+#Registracia {
+    font-family: Arial;
+    font-weight: 200;
+    width: 400px;
+    text-align: center;
+    font-size: 25px;     
+    color:black;
+} 
+table {
+    text-align: left;
+    color: white;
+
+}
+table {
+    margin-left: auto;
+}
+a {
+    color: white;
+ margin: 0px 0px 0px 650px;
+}
+img {
+    border-radius: 50%;
+margin: 0px 0px 0px 500px;
+}
+
+.row {
+    width: 100%;
+    
+}
+
+.registration{
+    margin-top: 180px;
+   text-align:  center;
+}
+
+#wrapper {
+    width: 100%;
+    border: 1px solid black;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+#first {
+    width: 60%;
+    float:left; /* add this */
+/*    border: 1px solid red;*/
+}
+#second {
+/*    border: 1px solid green;*/
+    overflow: hidden; /* if you don't want #second to wrap below #first */
+}
+
+.

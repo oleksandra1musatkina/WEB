@@ -1,0 +1,16 @@
+
+form{
+	padding-left: 35%;
+	padding-right: 35%;
+}
+table{
+	margin: auto;
+}
+caption{
+	background-color: silver;
+	padding: 5px;
+}
+#errorMes{
+	color: red;
+	font-size: 80%;
+}

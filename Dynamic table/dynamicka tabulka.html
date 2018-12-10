@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    h1 {
+				text-align: center; color: blue;
+			}
+      body {
+				background-color: lightgray
+			}
+      #divForm, #result {
+				 width: 750px; margin: auto;
+			 }
+      td {
+				padding: 0px 10px 0px 10px;
+			}
+      button {
+				width: 110px; height: 50px;
+			}
+      input[type='text'], input[type='number'] {
+				width: 130px;
+			}
+      #result table {
+				border: 1px solid black; width: 720px;
+			}
+      .button {
+				margin-top: 20px; margin-right: 80px;
+			}
+    </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1> Dynamicky renderovaný obsah tabuľky</h1>
+  <div id="divForm">
+    <table>
+      <tr>
+        <td><label>First name:</label></td>
+        <td><label>Last name:</label></td>
+        <td><label>Age:</label></td>
+        <td><label>Gender:</label></td>
+        <td rowspan="2"> <button onclick="btnAdd()">ADD</button></td>
+      </tr>
+      <tr>
+        <td><INPUT type="text" id="fname"></td>
+        <td><INPUT type="text" id="lname"></td>
+        <td><INPUT type="number" id="age"></td>
+        <td><INPUT type="radio" name="gender" value="M">male<br>
+          <INPUT type="radio" name="gender" value="F">female</td>
+
+      </tr>
+    </table>
+  </div>
+  <br>
+  <div id="result">
+    <table class="tblResult" id="tblResult">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th onclick="sortByFirstName()"> first name </th>
+          <th onclick="sortByLastName()">last name</th>
+          <th onclick="sortByAge()">age</th>
+          <th>gender</th>
+          <th>delete</th>
+        </tr>
+      </thead>
+      <tbody id="autoContent">
+      </tbody>
+    </table>
+    <button class="button" id="btnSave">Save data</button>
+    <button class="button" id="btnLoad">Load data</button>
+  </div>
+  <script type="text/javascript">
+    let persons = [];
+    let count = 0;
+
+    function btnAdd() {
+      count++;
+      let fname = $('#fname').val();
+      let lname = $('#lname').val();
+      let vek = $('#age').val();
+      let gender = $('input[name=gender]:checked').val();
+      let person = {
+        id: count,
+        fname: fname,
+        lname: lname,
+        age: vek,
+        gender: gender
+      };
+      persons.push(person);
+      renderTable(person);
+      console.log('name: ' + persons);
+    }
+    const deletePerson = (id) => {
+      console.log(id);
+      let index = persons.findIndex(x => {
+        return x.id === id
+      });
+      //console.log('I am going to delete: '+persons[index].lname+' '+index);
+      persons.splice(index, 1);
+      let per = [...persons];
+      $('#autoContent').empty();
+      per.map(x => {
+        renderTable(x);
+      });
+      persons = [...per];
+      console.log(per);
+    }
+    const renderTable = (person) => {
+      let column0 = $('<td>').text(person.id);
+      let column1 = $('<td>').text(person.fname);
+      let column2 = $('<td>').text(person.lname);
+      let column3 = $('<td>').text(person.age);
+      let column4 = $('<td>');
+      if (person.gender == 'M')
+        column4.text('male');
+      else if (person.gender == 'F')
+        column4.text('female');
+      else
+        column4.text('unknown');
+      let column5 = $('<td>');
+      let text = 'deletePerson(' + person.id + ')';
+      let image = $("<img>").attr({
+        src: "trash.png",
+        onclick: text,
+        onMouseOver: "$(this).attr({src:'hdeleteX.png'})",
+        onMouseOut: "$(this).attr({src:'trash.png'})"
+      });
+      //    let image=$('<img>').attr('src','deleteX.png').attr('onclick',text).attr("onmouseover",changeimg(this));
+      let row = $('<tr>');
+      column5.append(image);
+      if (person.gender == 'M') {
+        row.css('background-color', 'blue');
+      } else if (person.gender == 'F') {
+        row.css('background-color', 'red');
+      }
+
+
+      // row.append('>');
+      row.append(column0);
+      row.append(column1);
+      row.append(column2);
+      row.append(column3);
+      row.append(column4);
+      row.append(column5);
+      $('#tblResult').append(row);
+      $('#fname').val('');
+      $('#lname').val('');
+      $('#age').val('');
+    }
+    $('#btnSave').click(() => {
+      if (typeof(Storage) !== "undefined") {
+        let text = JSON.stringify(persons);
+        localStorage.setItem("persons", text);
+        localStorage.setItem("counter", count);
+      }
+    });
+    $('#btnLoad').click(() => {
+      if (typeof(Storage) !== "undefined") {
+        let text = localStorage.getItem("persons");
+        count = localStorage.getItem("counter");
+        persons = JSON.parse(text);
+        $('#autoContent').empty();
+        //console.log(persons[0].fname);
+        persons.map(x => {
+          renderTable(x);
+        });
+      }
+    });
+
+    function changeimg() {
+      console.log('text');
+      $(this).attr('src', 'hdelete.png');
+    }
+
+    function sortByAge() {
+      persons.sort((a, b) => {
+        let c1 = parseInt(a.age);
+        let c2 = parseInt(b.age);
+        if (c1 < c2) {
+          return -1;
+        }
+        if (c1 > c2) {
+          return 1;
+        }
+        return 0;
+      });
+      $('#autoContent').empty();
+      persons.map(x => {
+        renderTable(x);
+      });
+    }
+
+    function sortByFirstName() {
+      persons.sort((a, b) => {
+        let c1 = a.fname;
+        let c2 = b.fname;
+        if (c1 < c2) {
+          return -1;
+        }
+        if (c1 > c2) {
+          return 1;
+        }
+        return 0;
+      });
+      $('#autoContent').empty();
+      persons.map(x => {
+        renderTable(x);
+      });
+    }
+
+    function sortByLastName() {
+      persons.sort((a, b) => {
+        let c1 = a.lname;
+        let c2 = b.lname;
+        if (c1 < c2) {
+          return -1;
+        }
+        if (c1 > c2) {
+          return 1;
+        }
+        return 0;
+      });
+      $('#autoContent').empty();
+      persons.map(x => {
+        renderTable(x);
+      });
+    }
+  </script>
+</body>
+
+</html>
