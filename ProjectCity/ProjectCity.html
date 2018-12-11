@@ -15,7 +15,7 @@
       <tr>
         <td>CITY:</td>
         <td class="empty"></td>
-        <td >COUNTRY CODE:</td>
+        <td >COUNTRY:</td>
 
       </tr>
       <tr>
@@ -84,7 +84,8 @@ xhttp.onreadystatechange = function(){
     console.log(obj.cod);
   }
 };
-xhttp.open("GET", "ajax.info.txt",true);
+// xhttp.open("GET", "ajax.info.txt",true);
+xhttp.open("GET", req,true);
 xhttp.send();
 }
 </script>
