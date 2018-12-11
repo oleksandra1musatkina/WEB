@@ -9,12 +9,13 @@
 </head>
 
 <body>
+
   <div id="weather">
     <table class="cc">
       <tr>
         <td>CITY:</td>
         <td class="empty"></td>
-        <td>COUNTRY CODE:</td>
+        <td >COUNTRY CODE:</td>
 
       </tr>
       <tr>
@@ -29,7 +30,7 @@
     <table class="dataTable">
       <tr>
         <td>Temperature:</td>
-        <td id="Tem"></td>
+        <td id="temp"></td>
       </tr>
       <tr>
         <td>Humidity:</td>
@@ -56,11 +57,37 @@
         <td id="Sr"></td>
       </tr>
       <tr>
-        <td colspan="2"><button  class="sendButton" name="Send">SEND</button></td>
+        <td colspan="2"><div><button class="sendButton" name="Send" onclick="getWeather()">SEND</button></div></td>
       </tr>
     </table>
   </div>
 </div>
+
+<script>
+function getWeather() {
+let city = document.getElementById('city').value;
+let country = document.getElementById('country').value;
+console.log('city: '+city+'  country:'+country);
+let appid="682c9ed04ca91fe9c6c0dd6d1630c32d";
+let req="http://api.openweathermap.org/data/2.5/forecast?";
+req=req+"q="+city;
+req=req+","+country;
+req=req+"&mode=HTML";
+req=req+"&appid="+appid;
+console.log(req);
+var xhttp=new XMLHttpRequest();
+xhttp.onreadystatechange = function(){
+  if (this.readyState ==4 && this.status ==200){
+    let obj=JSON.parse(this.responseText);
+    document.getElementById("temp").innerHTML =
+    Math.round((obj.list[0].main.temp-273.15)*100)/100;
+    console.log(obj.cod);
+  }
+};
+xhttp.open("GET", "ajax.info.txt",true);
+xhttp.send();
+}
+</script>
 </body>
 
 </html>
