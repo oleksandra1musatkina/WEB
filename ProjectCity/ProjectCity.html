@@ -4,91 +4,326 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style/style.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
   <title> Project</title>
 </head>
 
-<body>
-
-  <div id="weather">
-    <table class="cc">
-      <tr>
-        <td>CITY:</td>
-        <td class="empty"></td>
-        <td >COUNTRY:</td>
-
-      </tr>
-      <tr>
-        <td><input type="text" id="city"></td>
-          <td class="empty"></td>
-        <td><input type="text" id="country"></td>
-      </tr>
-    </table>
+<body class="bg-dark">
+  <div class="jumbotron bg-dark">
+    <h1 class="text-light">Weather site</h1>
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-outline-light" type="button" onclick="getWeather()">Get weather!</button>
+      </span>
+      <input id="city" type="text" class="form-control" placeholder="Enter CITY here">
+      <input id="country" type="text" class="form-control" placeholder="Enter COUNTRY CODE here">
+    </div><!-- /input-group -->
   </div>
 
-  <div class="data">
-    <table class="dataTable">
-      <tr>
-        <td>Temperature:</td>
-        <td id="temp"></td>
-      </tr>
-      <tr>
-        <td>Humidity:</td>
-        <td id="Hum"></td>
-      </tr>
-      <tr>
-        <td>Population:</td>
-        <td id="Pop"></td>
-      </tr>
-      <tr>
-        <td>Longitude:</td>
-        <td id="Lon"></td>
-      </tr>
-      <tr>
-        <td>Latitude:</td>
-        <td id="Lat"></td>
-      </tr>
-      <tr>
-        <td>Sunset:</td>
-        <td id="Ss"></td>
-      </tr>
-      <tr>
-        <td>Sunrise:</td>
-        <td id="Sr"></td>
-      </tr>
-      <tr>
-        <td colspan="2"><div><button class="sendButton" name="Send" onclick="getWeather()">SEND</button></div></td>
-      </tr>
-    </table>
-  </div>
-</div>
+  <div id="containerDiv" class="container text-center bg-dark">
+    <div class="row">
+      <div class="col-lg-2 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img id="weather-status-image" class="card-img-top" src="image/clear.png" alt="Card image cap">
+          <div class="card-body">
+            <h2 class="card-title">
+              <div id="status"></div>
+            </h2>
 
-<script>
-function getWeather() {
-let city = document.getElementById('city').value;
-let country = document.getElementById('country').value;
-console.log('city: '+city+'  country:'+country);
-let appid="682c9ed04ca91fe9c6c0dd6d1630c32d";
-let req="http://api.openweathermap.org/data/2.5/forecast?";
-req=req+"q="+city;
-req=req+","+country;
-req=req+"&mode=HTML";
-req=req+"&appid="+appid;
-console.log(req);
-var xhttp=new XMLHttpRequest();
-xhttp.onreadystatechange = function(){
-  if (this.readyState ==4 && this.status ==200){
-    let obj=JSON.parse(this.responseText);
-    document.getElementById("temp").innerHTML =
-    Math.round((obj.list[0].main.temp-273.15)*100)/100;
-    console.log(obj.cod);
-  }
-};
-// xhttp.open("GET", "ajax.info.txt",true);
-xhttp.open("GET", req,true);
-xhttp.send();
-}
-</script>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/tepl.gif" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h2 class="card-title">
+              <div id="temp" class="bg-dark"></div>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 mx-auto">
+        <div class="row">
+          <div class="col-lg-12 mx-auto">
+            <div class="card bg-dark text-white border-0">
+              <!-- <img class="card-img-top" src="image/min.gif" alt="Card image cap"> -->
+              <div class="card-body">
+                <h2 class="card-title">
+                  MIN:
+                  <div id="tempmin"></div>
+                </h2>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 mx-auto">
+            <div class="card bg-dark text-white border-0">
+              <!-- <img class="card-img-top" src="image/max.gif" alt="Card image cap"> -->
+              <div class="card-body">
+                <h2 class="card-title">
+                  MAX:
+                  <div id="tempmax"></div>
+                </h2>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-2 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/Sunrise.gif" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h3 class="card-title">
+              <div id="Sr"></div>
+            </h3>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/sunset.gif" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h3 class="card-title">
+              <div id="Ss"></div>
+            </h3>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/barometer.png" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h2 class="card-title">
+              <div id="pressure"></div>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/humidity.png" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h2 class="card-title">
+              <div id="Hum"></div>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/vietor.gif" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h2 class="card-title">
+              <div id="windspeed"></div>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/compass.gif" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h2 class="card-title">
+              <div class="bg-dark" id="winddegree"></div>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/oblacik.gif" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h2 class="card-title">
+              <div id="clouds"></div>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/oko.gif" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h2 class="card-title">
+              <div id="visibility"></div>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/voda.gif" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <!-- <h2 class="card-title bg-dark"> -->
+            <h3 class="text-dark">
+              sea level:
+              <div id="sl"></div>
+              ground level:
+              <div id="gl"></div>
+            </h3>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/population.png" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h2 class="card-title">
+              <div id="Pop"></div>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 mx-auto">
+        <div class="card bg-dark text-white border-0">
+          <img class="card-img-top" src="image/earth.gif" alt="Card image cap">
+          <div class="card-body carousel-caption">
+            <h2 class="card-title">
+              <div id="Lat"></div>
+              <div id="Lon"></div>
+            </h2>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+  <script>
+    function getWeather() {
+      let container = document.getElementById("containerDiv");
+      container.style.display = "block";
+
+      let city = document.getElementById('city').value;
+      let country = document.getElementById('country').value;
+      console.log('city: ' + city + '  country:' + country);
+      let appid = "682c9ed04ca91fe9c6c0dd6d1630c32d";
+      let req = "http://api.openweathermap.org/data/2.5/weather?";
+      req = req + "q=" + city;
+      req = req + "," + country;
+      req = req + "&mode=HTML";
+      req = req + "&appid=" + appid;
+      console.log(req);
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          let obj = JSON.parse(this.responseText);
+          console.log(obj);
+
+          document.getElementById("temp").innerHTML =
+            Math.round((obj.main.temp - 273.15) * 100) / 100 + " °C";
+          document.getElementById("tempmax").innerHTML =
+            Math.round((obj.main.temp_max - 273.15) * 100) / 100 + " °C";
+          document.getElementById("tempmin").innerHTML =
+            Math.round((obj.main.temp_min - 273.15) * 100) / 100 + " °C";
+          document.getElementById("Hum").innerHTML =
+            obj.main.humidity + "%";
+          document.getElementById("visibility").innerHTML =
+            obj.visibility +'m';
+          document.getElementById("Lat").innerHTML =
+            obj.coord.lat + "′";
+          document.getElementById("Lon").innerHTML =
+            obj.coord.lon + "′";
+          let ss = new Date(obj.sys.sunset * 1000);
+          document.getElementById("Ss").innerHTML =
+            ss.getHours() + ":" + ss.getMinutes();
+          let sr = new Date(obj.sys.sunrise * 1000);
+          document.getElementById("Sr").innerHTML =
+            sr.getHours() + ":" + sr.getMinutes();
+          document.getElementById("winddegree").innerHTML =
+            obj.wind.deg + "°";
+          document.getElementById("windspeed").innerHTML =
+            obj.wind.speed + "km/h";
+          document.getElementById("clouds").innerHTML =
+            obj.clouds.all + '%';
+          document.getElementById("status").innerHTML =
+            obj.weather[0].description;
+          document.getElementById("pressure").innerHTML =
+            obj.main.pressure + " Pa";
+          let iconurl = "http://openweathermap.org/img/w/" + obj.weather[0].icon + ".png";
+          let image = document.getElementById("weather-status-image");
+          image.src = iconurl;
+          // image.src = "image/oko.gif";
+          console.log(iconurl);
+        }
+      };
+      let req2 = "http://api.openweathermap.org/data/2.5/forecast?";
+      req2 = req2 + "q=" + city;
+      req2 = req2 + "," + country;
+      req2 = req2 + "&mode=HTML";
+      req2 = req2 + "&appid=" + appid;
+      var xhttp2 = new XMLHttpRequest();
+      xhttp2.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          let obj = JSON.parse(this.responseText);
+          // console.log(obj);
+          //
+          document.getElementById("gl").innerHTML =
+            obj.list[0].main.grnd_level; + "mm"
+          document.getElementById("sl").innerHTML =
+            obj.list[0].main.sea_level + "mm"
+          // document.getElementById("Hum").innerHTML =
+          //   obj.main.humidity;
+          document.getElementById("Pop").innerHTML =
+            obj.city.population;
+          // document.getElementById("Lat").innerHTML =
+          //   obj.coord.lat;
+          // document.getElementById("Lon").innerHTML =
+          //   obj.coord.lon;
+          // let ss = new Date(obj.sys.sunset * 1000);
+          // document.getElementById("Ss").innerHTML =
+          //   ss.getHours() + ":" + ss.getMinutes();
+          // let sr = new Date(obj.sys.sunrise * 1000);
+          // document.getElementById("Sr").innerHTML =
+          //   sr.getHours() + ":" + sr.getMinutes();
+          // document.getElementById("winddegree").innerHTML =
+          //   obj.wind.deg;
+          // document.getElementById("windspeed").innerHTML =
+          //   obj.wind.speed;
+          // document.getElementById("clouds").innerHTML =
+          //   obj.weather[0].description;
+          // document.getElementById("pressure").innerHTML =
+          //   obj.main.pressure;
+          console.log(obj);
+        }
+      };
+
+      // xhttp.open("GET", "ajax.info.txt",true);
+      xhttp.open("GET", encodeURI(req), true);
+      xhttp.send();
+      xhttp2.open("GET", encodeURI(req2), true);
+      xhttp2.send();
+    }
+  </script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/snow.js"></script>
+
 </body>
 
 </html>

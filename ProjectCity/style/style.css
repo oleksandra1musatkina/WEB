@@ -2,9 +2,7 @@ table {
   background-color: #DB7F67;
   width: 50%;
   table-layout: fixed;
-  margin:auto;
-
-
+  margin: auto;
 }
 
 tr {
@@ -18,26 +16,51 @@ tr {
 
 html {
   background-color: #FFCAB1;
-
 }
 
 .data {
   align: left;
-
 }
 
 .sendButton {
   background-color: #335C67;
   color: white;
-  float:right;
+  float: right;
 }
+
 .dataTable {
   border: 1px solid black;
-
 }
+
 .empty {
   width: 20%;
 }
-.cc{
+
+.cc {
   text-align: center;
+}
+
+/* .imageRatio{
+  padding-top: 100%;
+} */
+.imageRatio:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+img {
+  min-width: 100%;
+  height: auto;
+}
+
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: contain;
+}
+
+#containerDiv{
+  display: none;
 }
