@@ -1,0 +1,69 @@
+table {
+  background-color: #DB7F67;
+  width: 50%;
+  table-layout: fixed;
+  margin: auto;
+}
+
+tr {
+  align: center;
+}
+
+#weather {
+  /* background-color: #335C67; */
+  width: auto;
+}
+
+html {
+  background-color: #FFCAB1;
+}
+
+.data {
+  align: left;
+}
+
+.sendButton {
+  background-color: #335C67;
+  color: white;
+  float: right;
+}
+
+.dataTable {
+  border: 1px solid black;
+}
+
+.empty {
+  width: 20%;
+}
+
+.cc {
+  text-align: center;
+}
+
+/* .imageRatio{
+  padding-top: 100%;
+} */
+.imageRatio:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+img {
+  min-width: 100%;
+  height: auto;
+}
+
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: contain;
+}
+
+#containerDiv{
+  display: none;
+}
+#not{
+  display: none;
+}
