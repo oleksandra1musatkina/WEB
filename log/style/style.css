@@ -1,0 +1,16 @@
+td {
+    font-family:Arial;
+}
+#error{
+  display: none;
+}
+/* #Project {
+    font-family: Arial;
+    font-weight: 200;
+    width: 400px;
+    text-align: center;
+   margin: 0 auto;
+    font-size: 25px;
+    /* background-color: lightgray; */
+    color: black;
+} */

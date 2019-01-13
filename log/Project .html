@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/style.css">
+
+    <title>PROJECT LOGIN</title>
+
+</head>
+<body>
+  <span style="float:right"><span id="logName">musatkina</span>&nbsp<button> Log out</button></span>
+
+  <h1 align="center" id="Project"> Project LOGIN</h1>
+
+  <table border="0" width="400" align="center">
+    <tbody>
+
+      <tr>
+        <td>Login:</td>
+        <td><input id="firstName" type="text" name="firstname" placeholder="Enter your login"></td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td><input  id="password" type="password" name="password" placeholder="Enter your password"></td>
+      </tr>
+
+      </table>
+    </tbody>
+
+    <div style="text-align:center"><button onclick="check()" name="OK" value="OK"> OK</button></div>
+    <div  style="color:red;text-align:center" id="error"></div>
+
+<script type="text/javascript">
+  function check() {
+    let name = document.getElementById("firstName").value;
+  let password = document.getElementById('password').value;
+  document.getElementById('error').innerHTML=" ";
+  if(password.length <=0){
+    document.getElementById("error").innerHTML="Enter your password!"
+  }
+  if(name.length <=0){
+    document.getElementById("error").innerHTML="Enter your name!"
+  }
+  console.log(name,password);
+  }
+    </script>
+</body>
+</html>

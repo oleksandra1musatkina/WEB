@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style/style.css">
+
+  <title>PROJECT LOGIN</title>
+
+</head>
+
+<body>
+  <span style="float:right"><span id="logName"></span>&nbsp<button onclick="logout()"> Log out</button></span>
+
+  <h1 align="center" id="Project"> Project LOGIN</h1>
+
+
+  <div style="text-align:center">Get Joke</div>
+  <div style="text-align:center"><button onclick="getJoke()" name="OK" value="OK">Get Joke</button></div>
+  <div style="color:red;text-align:center" id="error"></div>
+  <div id="ph">
+
+  </div>
+  <script type="text/javascript">
+    document.onload = chceckIfLogged();
+
+    function getJoke() {
+      let req = "http://itsovy.sk:1201/joke";
+      var xhttp = new XMLHttpRequest(); // new HttpRequest instance
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          let obj = JSON.parse(this.responseText);
+          console.log(obj);
+          document.getElementById("ph").innerHTML=obj.joke;
+        }
+
+      }
+      xhttp.open("POST", encodeURI(req), "/json-handler");
+      xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhttp.send(localStorage.getItem('user'));
+    }
+
+    function logout() {
+      localStorage.removeItem('user');
+      let req = "http://itsovy.sk:1201/logout";
+      var xhttp = new XMLHttpRequest(); // new HttpRequest instance
+      xhttp.open("POST", encodeURI(req), "/json-handler");
+      // xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhttp.send();
+      window.location.replace("login.html");
+
+    }
+
+
+    function chceckIfLogged() {
+      if (!localStorage.getItem('user')) {
+        window.location.replace("login.html");
+      } else {
+        let user = JSON.parse(localStorage.getItem('user'));
+        document.getElementById('logName').innerHTML = user.login;
+        console.log(user);
+      }
+    }
+  </script>
+</body>
+
+</html>
