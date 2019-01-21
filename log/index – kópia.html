@@ -4,176 +4,62 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style/style.css">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
 
   <title>PROJECT LOGIN</title>
-  <!-- <link href="style/navbar-top.css" rel="stylesheet"> -->
 
 </head>
 
-<body class="bg-dark">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">Project login</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <button class="nav-link btn btn-dark" onclick="hideAllCards(); showGetJokeCard()">Get joke <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <button class="nav-link btn btn-dark" onclick="hideAllCards(); showSendJokeCard()">Send joke <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <button class="nav-link btn btn-dark" onclick="hideAllCards(); showGetMessagesCard()">Get messages <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <button class="nav-link btn btn-dark" onclick="hideAllCards(); showSendMessageCard()">Send message <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <button class="nav-link btn btn-dark" onclick="hideAllCards(); showChangePasswordCard()">Change password <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-
-      <div class="navbar-brand" id="logName">Name</div>
-
-      <div class="" id="navbarText">
-        <button class="btn my-2 my-sm-0" onclick="logout()"> Log out</button>
-      </div>
-    </div>
-  </nav>
-
-
-  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="navbar-brand" id="logName">Navbar w/ text</div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <button class="btn btn-outline-dark my-2 my-sm-0" onclick="logout()"> Log out</button>
-    </div>
-  </nav>
-  <div class="alert alert-primary" role="alert" id="notifications">
-    This is a primary alert—check it out!
+<body>
+  <div id="notifications">
   </div>
-  <div class="jumbotron bg-dark">
-    <h1 class="text-light">Project LOGIN</h1>
-  </div> -->
+  <span style="float:right"><span id="logName"></span>&nbsp<button onclick="logout()"> Log out</button></span>
 
-  <div class="alert alert-primary" role="alert" id="notifications">
-    This is a primary alert—check it out!
-  </div>
-  <div id="containerDiv" class="container">
-    <div class="row center-block text-center">
-      <div class="col-sm-3">
-      </div>
-      <div class="col-sm-6 col-sm-offset-3">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="card center-block text-center" id="sendJokeCard">
-              <div class="card-header">
-                Send joke
-              </div>
-              <div class="card-body center-block">
-                <!-- <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">@</span>
-                </div> -->
-                <input type="text" class="form-control" placeholder="joke" name="joke" id="joke">
-                <br>
-                <button class="btn btn-primary" onclick="sendJoke()">Send joke</button>
-              </div>
-            </div>
-          </div>
+  <h1 align="center" id="Project"> Project LOGIN</h1>
 
 
-          <div class="col-sm-12">
+  <div style="text-align:center">Get Joke</div>
+  <div style="text-align:center"><button onclick="getJoke()" name="OK" value="OK">Get Joke</button></div>
+  <div style="color:red;text-align:center" id="error"></div>
+  <div id="ph">
 
-            <div class="card" id="sendMessageCard">
-              <div class="card-header">
-                Send Message
-              </div>
-              <div class="card-body">
-                <input type="text" class="form-control" placeholder="message" name="message" id="message">
-                <br>
-                <input type="text" class="form-control" placeholder="recipient" name="recipient" id="recipient">
-                <br>
-                <button class="btn btn-primary" onclick="sendMessage()">Send messages</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="card" id="getJokeCard">
-              <div class="card-header">
-                Get joke
-              </div>
-              <div class="card-body">
-                <div style="color:red;text-align:center" id="error"></div>
-                <div id="ph">
-
-
-                </div>
-
-                <br>
-                <button class="btn btn-primary" onclick="getJoke()">Get joke</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12">
-
-            <div class="card" id="changePasswordCard">
-              <div class="card-header">
-                Change password
-              </div>
-              <div class="card-body">
-
-
-                enter old password
-                <input type="password" class="form-control" placeholder="old password" name="old_password" id="old_password">
-                <br>
-                <input type="password" class="form-control" placeholder="new password" name="new_password" id="new_password">
-                <br>
-                <button class="btn btn-primary" onclick="changePassword()">Change password</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="card" id="getMessagesCard">
-              <div class="card-header">
-                Get messages
-              </div>
-              <div class="card-body">
-
-                <table class="table" id="messagesTable">
-                  <thead>
-                    <tr>
-                      <th scope="col">Autor</th>
-                      <th scope="col">Message</th>
-                    </tr>
-                  </thead>
-                  <tbody id="messagesTableBody">
-                  </tbody>
-
-                </table>
-                <br>
-                <button class="btn btn-primary" onclick="getMessages()">Refresh messages</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
 
   </div>
+  enter joke
+  <input type="text" name="joke" id="joke">
+  <button onclick="sendJoke()">Send joke</button>
 
+  <br>
+  enter message
 
+  <input type="text" name="message" id="message">
+  enter name of recipient
+  <input type="text" name="recipient" id="recipient">
+
+  <button onclick="sendMessage()">Send messages</button>
+  <br>
+  enter old password
+  <input type="password" name="old_password" id="old_password">
+  enter new password
+  <input type="password" name="new_password" id="new_password">
+
+  <button onclick="changePassword()">Change password</button>
+  <br>
+  <button onclick="getMessages()">Refresh messages</button>
+  <!-- <button onclick='clearChildsOfId("messagesTable")'>clear messages</button> -->
+  <table id="messagesTable">
+    <tr>
+      <th>
+        Autor
+      </th>
+      <th>
+        Message
+      </th>
+    </tr>
+    <tbody id="messagesTableBody">
+    </tbody>
+  </table>
   <script type="text/javascript">
-    window.onload = function() {
-      chceckIfLogged();
-      showGetJokeCard();
-    }
-
+    document.onload = chceckIfLogged();
 
     function clearChildsOfId(id) {
       var Parent = document.getElementById(id);
@@ -226,7 +112,7 @@
         if (this.readyState == 4 && this.status == 200) {
           let obj = JSON.parse(this.responseText);
           console.log(obj);
-          document.getElementById("ph").innerHTML += "<br>" + obj.joke + " (Author: " + obj.author + ")";
+          document.getElementById("ph").innerHTML = obj.joke + " (Author: " + obj.author + ")";
         }
 
       }
@@ -318,8 +204,6 @@
             let obj = this.responseText;
             document.getElementById("notifications").style.display = "block";
             document.getElementById("notifications").innerHTML = obj;
-            // window.location.replace("login.html");
-
           } else {
             let obj = this.responseText;
             document.getElementById("notifications").style.display = "block";
@@ -359,45 +243,7 @@
         console.log(user);
       }
     }
-
-    function hideAllCards() {
-      document.getElementById("sendJokeCard").style.display = "none";
-      document.getElementById("sendMessageCard").style.display = "none";
-      document.getElementById("getJokeCard").style.display = "none";
-      document.getElementById("changePasswordCard").style.display = "none";
-      document.getElementById("getMessagesCard").style.display = "none";
-
-    }
-
-    function showSendJokeCard() {
-      document.getElementById("sendJokeCard").style.display = "block";
-
-    }
-
-    function showSendMessageCard() {
-      document.getElementById("sendMessageCard").style.display = "block";
-
-
-    }
-
-    function showGetJokeCard() {
-      document.getElementById("getJokeCard").style.display = "block";
-
-    }
-
-    function showChangePasswordCard() {
-      document.getElementById("changePasswordCard").style.display = "block";
-
-    }
-
-    function showGetMessagesCard() {
-      document.getElementById("getMessagesCard").style.display = "block";
-
-    }
   </script>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>

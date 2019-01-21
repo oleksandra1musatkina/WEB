@@ -1,9 +1,26 @@
-td {
-    font-family:Arial;
+body {
+  background-image: url("../lala3.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: fixed;
 }
-#error{
+
+td {
+  font-family: Arial;
+}
+
+#error {
   display: none;
 }
+
+#notifications {
+  display: none;
+}
+
+#sendJokeCard, #sendMessageCard, #getJokeCard, #changePasswordCard, #getMessagesCard {
+  display: none;
+}
+
 /* #Project {
     font-family: Arial;
     font-weight: 200;
@@ -12,5 +29,7 @@ td {
    margin: 0 auto;
     font-size: 25px;
     /* background-color: lightgray; */
-    color: black;
-} */
+color: black;
+}
+
+*/
